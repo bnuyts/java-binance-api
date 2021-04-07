@@ -1,6 +1,5 @@
 package com.github.bnuyts.binanceapi.price.service;
 
-import com.binance.api.client.BinanceApiClientFactory;
 import com.github.bnuyts.binanceapi.client.BinanceClient;
 
 import org.springframework.stereotype.Service;

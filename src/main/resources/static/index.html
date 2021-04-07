@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<head>
+    <title>Java binance api call</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet">
+    <style type="text/css">
+        * {margin: 0; padding: 0}
+        body {font-family: 'Source Sans Pro', sans-serif; font-size: 64px;}
+        #price-section {display: grid; justify-content: center; align-content: center; height: 100%; min-height: 100vh;}
+    </style>
+</head>
+<body>
+    <div id="price-section">
+        <div>Last price of BTCUSDT: <span id="price-placeholder">Loading...</span></div>
+    </div>
+    <script type="text/javascript">
+        function updatePrice() {
+            fetch('/price/last/BTCUSDT')
+                .then((response) => response.text())
+                .then((result) => document.getElementById('price-placeholder').innerText = result);
+        }
+
+        updatePrice();
+        setInterval(updatePrice, 10000);
+    </script>
+</body>

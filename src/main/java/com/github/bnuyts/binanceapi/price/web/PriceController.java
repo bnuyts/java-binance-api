@@ -3,9 +3,9 @@ package com.github.bnuyts.binanceapi.price.web;
 import com.github.bnuyts.binanceapi.price.service.PriceService;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 /**
@@ -21,8 +21,8 @@ public class PriceController {
         this.priceService = priceService;
     }
 
-    @GetMapping("/latest")
-    public String getLatestPrice(@RequestParam String symbol) {
+    @GetMapping("/last/{symbol}")
+    public String getLatestPrice(@PathVariable String symbol) {
         return this.priceService.getLatestPrice(symbol);
     }
 }
