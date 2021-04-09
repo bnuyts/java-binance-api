@@ -1,7 +1,7 @@
 package com.github.bnuyts.binanceapi.client;
 
 import com.binance.api.client.BinanceApiClientFactory;
-import com.binance.api.client.BinanceApiRestClient;
+import com.binance.api.client.BinanceApiWebSocketClient;
 
 import org.springframework.stereotype.Component;
 
@@ -9,14 +9,14 @@ import org.springframework.stereotype.Component;
 public class BinanceClient {
     
     private final BinanceApiClientFactory factory;
-    private final BinanceApiRestClient client;
+    private final BinanceApiWebSocketClient client;
 
     public BinanceClient() {
         this.factory = BinanceApiClientFactory.newInstance();
-        this.client = factory.newRestClient();
+        this.client = factory.newWebSocketClient();
     }
 
-    public BinanceApiRestClient getClient() {
+    public BinanceApiWebSocketClient getClient() {
         return client;
     }
 }

@@ -1,0 +1,19 @@
+socket:
+    allowed-origin-patterns: "*"
+
+spring:
+  profiles:
+    active:
+    - default
+
+---
+
+spring:
+    config:
+        activate:
+            on-profile:
+            - production
+    devtools:
+        add-properties: false
+socket:
+    allowed-origin-patterns: "https://java-binance-api.herokuapp.com/"
