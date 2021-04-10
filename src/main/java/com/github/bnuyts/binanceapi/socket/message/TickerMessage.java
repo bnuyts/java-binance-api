@@ -1,6 +1,8 @@
 package com.github.bnuyts.binanceapi.socket.message;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 public class TickerMessage {
 
@@ -24,7 +26,7 @@ public class TickerMessage {
     }
 
     public void setPrice(String price) {
-        DecimalFormat df = new DecimalFormat("0.00");
+        DecimalFormat df = new DecimalFormat("#,##0.00", new DecimalFormatSymbols(new Locale("en_US")));
         this.price = df.format(Double.parseDouble(price));
     }
 
