@@ -65,7 +65,7 @@
 				</executions>
 				<configuration>
 					<executable>npx</executable>
-					<workingDirectory>src/main/frontend/ng-client</workingDirectory>
+					<workingDirectory>${basedir}/src/main/frontend/ng-client</workingDirectory>
 					<arguments>
 						<argument>ng</argument>
 						<argument>build</argument>
