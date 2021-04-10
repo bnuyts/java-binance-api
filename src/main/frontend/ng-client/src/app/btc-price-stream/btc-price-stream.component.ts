@@ -15,18 +15,16 @@ const asTickerMessage = (message: string): TickerMessage => JSON.parse(message);
 })
 export class BtcPriceStreamComponent implements OnInit {
 
-  public priceFeed: string[] = [];
+  public price: string = '';
   public symbol: string = 'symbol';
 
   constructor(private rxStompService: RxStompService) { }
 
   ngOnInit(): void {
     this.rxStompService.watch('/topic/price').subscribe((message: Message) => {
-      const tickerMessage = asTickerMessage(message.body);
-      this.symbol = tickerMessage.symbol;
-
-      const length = this.priceFeed.unshift(tickerMessage.price);
-      this.priceFeed = length > 20 ? this.priceFeed.slice(0, 20) : this.priceFeed;
+      const {price, symbol} = asTickerMessage(message.body);
+      this.price = price;
+      this.symbol = symbol;
     });
 
     this.rxStompService.publish({destination: '/app/ticker', body: JSON.stringify({symbol: 'btcusdt'})});

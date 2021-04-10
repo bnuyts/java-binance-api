@@ -1,5 +1,7 @@
 package com.github.bnuyts.binanceapi.socket.message;
 
+import java.text.DecimalFormat;
+
 public class TickerMessage {
 
     private String price;
@@ -9,8 +11,8 @@ public class TickerMessage {
     }
 
     public TickerMessage(String price, String symbol) {
-        this.price = price;
-        this.symbol = symbol;
+        setPrice(price);
+        setSymbol(symbol);
     }
 
     public String getPrice() {
@@ -22,7 +24,8 @@ public class TickerMessage {
     }
 
     public void setPrice(String price) {
-        this.price = price;
+        DecimalFormat df = new DecimalFormat("0.00");
+        this.price = df.format(Double.parseDouble(price));
     }
 
     public void setSymbol(String symbol) {
