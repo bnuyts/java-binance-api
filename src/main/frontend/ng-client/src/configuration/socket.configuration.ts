@@ -2,7 +2,7 @@ import { InjectableRxStompConfig } from "@stomp/ng2-stompjs";
 
 export const socketConfig: InjectableRxStompConfig = {
     // Which server?
-    brokerURL: 'ws://java-binance-api.herokuapp.com//ws',
+    brokerURL: 'wss://java-binance-api.herokuapp.com/ws',
   
     // How often to heartbeat?
     // Interval in milliseconds, set to 0 to disable
