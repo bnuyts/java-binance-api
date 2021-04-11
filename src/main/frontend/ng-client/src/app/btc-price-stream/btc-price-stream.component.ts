@@ -1,23 +1,21 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RxStompService } from '@stomp/ng2-stompjs';
 import { Message } from '@stomp/stompjs';
-import { ReplaySubject } from 'rxjs';
+import { BehaviorSubject, ReplaySubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-
-interface TickerMessage {
-  price: string;
-  symbol: string;
-}
-
-const asTickerMessage = (message: string): TickerMessage => JSON.parse(message);
+import { asTickerMessage } from '../util';
 
 @Component({
+  selector: 'app-price-stream',
   templateUrl: './btc-price-stream.component.html',
   styleUrls: ['./btc-price-stream.component.scss'],
 })
 export class BtcPriceStreamComponent implements OnInit, OnDestroy {
-  public price: string = '';
-  public symbol: string = 'symbol';
+  private priceSubject$ = new BehaviorSubject<string>('');
+  public price$ = this.priceSubject$.asObservable();
+
+  private symbolSubject$ = new BehaviorSubject<string>('symbol');
+  public symbol$ = this.symbolSubject$.asObservable();
 
   private destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
 
@@ -29,8 +27,8 @@ export class BtcPriceStreamComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroyed$))
       .subscribe((message: Message) => {
         const { price, symbol } = asTickerMessage(message.body);
-        this.price = price;
-        this.symbol = symbol;
+        this.priceSubject$.next(price);
+        this.symbolSubject$.next(symbol);
       });
 
     this.rxStompService.publish({

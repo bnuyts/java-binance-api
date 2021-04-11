@@ -16,9 +16,11 @@ import {
   socketConfigWithDebug,
 } from '../configuration/socket.configuration';
 import { environment } from '../environments/environment';
+import { ChartComponent } from './chart/chart.component';
+import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
-  declarations: [AppComponent, BtcPriceStreamComponent],
+  declarations: [AppComponent, BtcPriceStreamComponent, ChartComponent, LayoutComponent],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [
     {

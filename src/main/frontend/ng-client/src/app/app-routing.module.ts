@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { BtcPriceStreamComponent } from './btc-price-stream/btc-price-stream.component';
+import { LayoutComponent } from './layout/layout.component';
 
-const routes: Routes = [{
-  path: '',
-  component: BtcPriceStreamComponent
-}];
+const routes: Routes = [
+  {
+    path: '',
+    component: LayoutComponent,
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
